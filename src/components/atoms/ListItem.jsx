@@ -23,7 +23,7 @@ const ListItemStyle = styled.li`
 `
 
 
-const ListItem = ({title, path}) => {
+const ListItem = ({title, path, setExpanded }) => {
     
     return (
         <>
@@ -33,8 +33,12 @@ const ListItem = ({title, path}) => {
                 key={title}>
                 <Link 
                     className="list__item__link"
-                    to={path}>
+                    to={path}
+                    onClick={()=>{
+                        // poner setExpanded en false tras un segundo
+                    }}>
                     {title}
+                    
                 </Link>
                 
             </ListItemStyle>

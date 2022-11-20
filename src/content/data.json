@@ -182,7 +182,10 @@
                             }
                         ]
                     }
-                ]
+                ],
+                "summary": {
+                    "title" :"Order summary"
+                }
             }
         },
 

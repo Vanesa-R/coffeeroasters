@@ -1,13 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { H2 } from "../atoms/Heading";
 import Button from "../atoms/Button";
 import Card from "../molecules/Card";
 
-
+// Styles
 import styled from "styled-components";
 import colors from "../../styles/theming/colors";
 import device from "../../styles/responsive/breakpoints";
-
 
 const SectionHowWorksStyle = styled.section`
     text-align: center;
@@ -131,7 +130,7 @@ const SectionHowWorks = ({page, content, subtitle, text}) => {
             className={page === "plan" ? "section section__how-works section--dark" : "section section__how-works"}>
             
             { content.map(data => (
-                <>
+                <Fragment key="section__how-works">
                     {page === "home" && (
                         <H2 className="subtitle" small medium>{data.main.home.howWorks.title}</H2>
                     )}
@@ -150,7 +149,7 @@ const SectionHowWorks = ({page, content, subtitle, text}) => {
                     )}
 
 
-                </>
+                </Fragment>
             ))}
         </SectionHowWorksStyle>
     )

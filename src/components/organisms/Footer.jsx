@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ListItem from "../atoms/ListItem";
 import Logo from "../molecules/Logo";
 import Icon from "../molecules/Icon";
@@ -12,6 +12,7 @@ import Instagram from "../../images/shared/icon-instagram.svg"
 import styled from "styled-components";
 import colors from "../../styles/theming/colors";
 import device from "../../styles/responsive/breakpoints";
+import fonts from "../../styles/theming/fonts";
 
 
 const FooterStyle = styled.footer`
@@ -41,7 +42,7 @@ const FooterStyle = styled.footer`
             margin-bottom: 24px;
             & .list__item__link {
                 text-transform: uppercase;
-                font-size: 12px;
+                font-size: ${({theme}) => fonts.size1};
                 color: ${({theme}) => colors.grey10};
             }   
         }
@@ -73,7 +74,7 @@ const Footer = ({content, src, title}) => {
 
                 { content.map(data => (
 
-                    <>
+                    <Fragment key="footer">
                         <ul className="footer__list">
                             { data.navigation.map(item => (
                                 <ListItem
@@ -93,7 +94,7 @@ const Footer = ({content, src, title}) => {
                                     title={icon.title}/>
                             ))}
                         </div>
-                    </>
+                    </Fragment>
                 ))}
                 
 

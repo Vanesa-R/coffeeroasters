@@ -55,8 +55,8 @@ export const H2Gradient = styled.h2`
 export const H2 = styled.h2`
     margin-bottom: 24px;
     font-family: ${({ theme }) => fonts.title}, serif;
-    font-size: ${({ small}) => small ? "24px" : "28px" };
-    line-height: ${({small}) => small ? "32px" : "28px"};
+    font-size: ${({ small}) => small ? ({theme}) => fonts.size3 : ({theme}) => fonts.size5 };
+    line-height: ${({small}) => small ? ({theme}) => fonts.size6 : ({theme}) => fonts.size5};
     font-weight: 900;
     color: ${({ light, medium }) => light ? ({theme}) => colors.white20 
         : medium ? ({theme}) => colors.grey10 : ({theme}) => colors.blue90};
@@ -65,14 +65,24 @@ export const H2 = styled.h2`
 
 export const H3 = styled.h3`
     font-family: ${({ theme }) => fonts.title}, serif;
-    font-size: 24px;
-    line-height: ${({small}) => small ? "28px" : "32px"};
+    font-size: ${({theme}) => fonts.size3};
+    line-height: ${({small}) => small ? ({theme}) => fonts.size5 : ({theme}) => fonts.size6};
     font-weight: 900;
     color: ${({ light, medium }) => light ? ({theme}) => colors.white20 
         : medium ? ({theme}) => colors.grey10 : ({theme}) => colors.blue90};
 
     ${device.tablet`
         font-size: 28px;
-
     `} 
+`
+
+
+export const H4 = styled.h4`
+    font-family: ${({theme}) => fonts.primary}, sans-serif;
+    font-weight: 400;
+    font-size: ${({theme}) => fonts.size2};
+    line-height: ${({theme}) => fonts.size4};
+    text-transform: ${({ uppercase }) => uppercase && 'uppercase'};
+    color: ${({theme}) => colors.white10};
+    opacity: ${({opacity}) => opacity && '0.5'};
 `

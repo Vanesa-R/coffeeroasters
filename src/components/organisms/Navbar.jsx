@@ -69,7 +69,7 @@ const NavbarStyle = styled.nav`
 const Navbar = ({content}) => {
     
     const [expanded, setExpanded] = useState(false)
-
+        
     return (
 
         <>

@@ -1,14 +1,13 @@
 import React from "react";
 import Summary from "../molecules/Summary";
 import Order from "../molecules/Order";
+import OrderSummary from "../molecules/OrderSummary";
 import { useState } from "react";
 
 
 // Styles
 import styled from "styled-components";
-import colors from "../../styles/theming/colors";
-
-
+import device from "../../styles/responsive/breakpoints";
 
 const SectionOrderStyle = styled.section`
     & .details {
@@ -24,10 +23,10 @@ const SectionOrderStyle = styled.section`
                 max-height: auto;
                 overflow: hidden;
                 & .card {
-                    background-color: ${({theme}) => colors.white30};
                     padding: 24px;
                     border-radius: 10px;
                     text-align: left;
+                    transition: 150ms ease-in background-color;
     
                     &:not(:last-of-type){
                         margin-bottom: 16px;
@@ -40,6 +39,13 @@ const SectionOrderStyle = styled.section`
                     & .paragraph {
                         margin-bottom: 0;
                     }
+
+                    ${device.desktop`
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #fdd6ba;
+                        }
+                    `}
                 }
             }
         }
@@ -55,64 +61,68 @@ const SectionOrderStyle = styled.section`
 `
 
 
-const SectionOrder = ({content, value, order, setOrder, summary, subtitle, text}) => {
+const SectionOrder = ({ content, filter, setOption }) => {
 
-
+    const [order, setOrder] = useState({
+        preferences: "",
+        beanType: "",
+        quantity: "",
+        grindOption: "",
+        deliveries: "",
+    });
 
     return(
-
         <>
-
             { content.map(data => (
                 <SectionOrderStyle 
                     className="section section__order-summary"
-                    key={data}>
+                    key="section__order-summary">
 
-                { data.main.plan.order.map((detail, i) => { 
-
-                    let id = detail.anchor.split(" ").join("");
-                    id = id.charAt(0).toLowerCase() + id.slice(1);
-
-                    return (
-
-                    <details 
-                        className="details"
-                        id={id}
-                        open={i === 0 ? true : false}>
-
-                        <Summary
-                            key={detail.summary}
-                            summary={detail.summary}/>
-                            
+                    <div className="details__container">
                         
-                        <div 
-                            className="section__cards">
-
-                            {detail.details.map(card => {
-                        
-
-
-
+                        { data.main.plan.order.map((detail, i) => { 
+                            let id = detail.anchor.split(" ").join("");
+                            id = id.charAt(0).toLowerCase() + id.slice(1);
 
                             return (
+                            
+                            <details 
+                                className="details"
+                                key={id}
+                                id={id}
+                                open={i === 0 ? true : false}>
 
-                                <Order
-                                    key={card.title}
-                                    value={card.title}
-                                    order={order}
-                                    setOrder={setOrder}
-                                    subtitle={card.title}
-                                    text={card.text}/>
+                                <Summary
+                                    key={detail.summary}
+                                    summary={detail.summary}/> 
+                                
+                                <div className="section__cards">
+                                    {detail.details.map(card => (
 
-                            )})}
-                        </div>
-                    </details>
-                    )
-                })}
+                                        <Order
+                                            key={card.title}
+                                            value={card.title}
+                                            order={order}
+                                            setOrder={setOrder}
+                                            filter={id}
+                                            subtitle={card.title}
+                                            text={card.text}/>
+                                    ))}
+
+                                </div>
+                            </details>
+                            )
+                        })}
+                    </div>
+
+                    <OrderSummary 
+                        title="titulo"
+                        text="blablabla">
+
+                    </OrderSummary>
 
                 </SectionOrderStyle>
             ))}
-        
                 
         </>
     )

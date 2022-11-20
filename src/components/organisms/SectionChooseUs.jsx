@@ -1,5 +1,5 @@
 // Components
-import React from "react";
+import React, { Fragment } from "react";
 import { H2 } from "../atoms/Heading";
 import { Text } from "../atoms/Text";
 import Card from "../molecules/Card";
@@ -125,7 +125,7 @@ const SectionChooseUs = ({section, content, subtitle, text}) => {
 
             {content.map(data => (
                 
-                <>
+                <Fragment key="section__choose">
                     <div className="section__intro">
                         <H2 className="subtitle" light>{data.main.home.chooseUs.title}</H2>
                         <Text className="paragraph" light>{data.main.home.chooseUs.text}</Text>
@@ -143,7 +143,7 @@ const SectionChooseUs = ({section, content, subtitle, text}) => {
                         ))}
                         
                     </div>
-                </>
+                </Fragment>
             ))}
             
         </SectionChooseUsStyle>

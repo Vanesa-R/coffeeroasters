@@ -1,12 +1,12 @@
 import React from "react";
 import Hero from "../components/molecules/Hero";
 import SectionHowWorks from "../components/organisms/SectionHowWorks";
+import SectionOrder from "../components/organisms/SectionOrder";
 
 // Assets
 import imgMobile from "../images/plan/mobile/image-hero-blackcup.jpg";
 import imgTablet from "../images/plan/desktop/image-hero-blackcup.jpg";
 import imgDesktop from "../images/plan/desktop/image-hero-blackcup.jpg";
-import SectionOrder from "../components/organisms/SectionOrder";
 
 
 
