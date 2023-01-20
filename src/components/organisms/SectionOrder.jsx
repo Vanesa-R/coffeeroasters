@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import Summary from "../molecules/Summary";
 import Order from "../molecules/Order";
 import OrderSummary from "../molecules/OrderSummary";
-import { useState } from "react";
+import Button from "../atoms/Button";
 
 
 // Styles
@@ -12,6 +12,12 @@ import device from "../../styles/responsive/breakpoints";
 const SectionOrderStyle = styled.section`
     & .details {
         margin-bottom: 96px;
+        
+        ${device.tablet`
+           &:last-of-type{
+            margin-bottom: 144px;
+           }
+        `}
             
         &[open] {
             & .summary {
@@ -22,14 +28,43 @@ const SectionOrderStyle = styled.section`
             & .section__cards {
                 max-height: auto;
                 overflow: hidden;
+
+                ${device.tablet`
+                    display: flex;
+                    flex-direction: row; 
+                    align-items: flex-start;
+                `}
                 & .card {
                     padding: 24px;
                     border-radius: 10px;
                     text-align: left;
                     transition: 150ms ease-in background-color;
-    
+
+                    ${device.tablet`
+                        margin-top: 26px;
+                        padding: 32px 26px 84px;
+                    `}    
+
                     &:not(:last-of-type){
                         margin-bottom: 16px;
+                        ${device.tablet`
+                            margin-bottom: 0;
+                        `}
+                    }
+
+                    &:nth-of-type(even){
+                        ${device.tablet`
+                            margin-left: 10px;
+                            margin-right: 10px;
+                        `}
+                    }
+
+                    & .card__info {
+                        & .card__title {
+                            ${device.tablet`
+                                margin-bottom: 26px;
+                            `}
+                        }
                     }
     
                     & .title {
@@ -48,20 +83,13 @@ const SectionOrderStyle = styled.section`
                     `}
                 }
             }
-        }
-
-        &:not([open]){
-            & .section__cards {
-                
-            }
-        }
-        
+        }        
     }
 
 `
 
 
-const SectionOrder = ({ content, filter, setOption }) => {
+const SectionOrder = ({ content }) => {
 
     const [order, setOrder] = useState({
         preferences: "",
@@ -71,9 +99,16 @@ const SectionOrder = ({ content, filter, setOption }) => {
         deliveries: "",
     });
 
+
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    
+
+    
     return(
         <>
             { content.map(data => (
+
                 <SectionOrderStyle 
                     className="section section__order-summary"
                     key="section__order-summary">
@@ -86,7 +121,7 @@ const SectionOrder = ({ content, filter, setOption }) => {
 
                             return (
                             
-                            <details 
+                            <details
                                 className="details"
                                 key={id}
                                 id={id}
@@ -98,28 +133,46 @@ const SectionOrder = ({ content, filter, setOption }) => {
                                 
                                 <div className="section__cards">
                                     {detail.details.map(card => (
-
+                                     
                                         <Order
                                             key={card.title}
-                                            value={card.title}
                                             order={order}
                                             setOrder={setOrder}
                                             filter={id}
+                                            value={card.title}
                                             subtitle={card.title}
                                             text={card.text}/>
-                                    ))}
+                                        ))}
 
                                 </div>
                             </details>
                             )
                         })}
+
                     </div>
 
                     <OrderSummary 
-                        title="titulo"
-                        text="blablabla">
+                        order={order}
+                        setOrder={setOrder}
+                        title={content.map(data => data.main.plan.summary.title)}
+                        text={
+                            (order.preferences === "Capsule" )
 
+                            ? <>I drink my coffee using <span className="order__value">Capsules</span>, 
+                            with a <span className="order__value">{order.beanType || "_____"}</span> type of bean.
+                            <span className="order__value"> {order.quantity ||  "_____"}</span>, 
+                            sent to me <span className="order__value">{order.deliveries || "_____"}</span>.</>
+
+                            : <>I drink my coffee as <span className="order__value">{order.preferences || "_____"}</span>, 
+                            with a <span className="order__value">{order.beanType || "_____"}</span> type of bean. 
+                            <span className="order__value">{ order.quantity ||  "_____"}</span> 
+                            ground ala <span className="order__value">{order.grindOption || "_____"}</span>, 
+                            sent to me <span className="order__value">{order.deliveries || "_____"}</span>.</>    
+                        }>
+                            
                     </OrderSummary>
+
+                    <Button cta="Create my plan!"></Button>
 
                 </SectionOrderStyle>
             ))}

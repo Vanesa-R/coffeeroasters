@@ -66,6 +66,9 @@ const SectionHowWorksStyle = styled.section`
             
             &:not(:last-of-type){
                 margin-bottom: 56px;
+                ${device.tablet`
+                    margin-bottom: 100px;
+                `}
             }
 
             &:nth-of-type(2){
@@ -76,6 +79,9 @@ const SectionHowWorksStyle = styled.section`
             }
             &:last-of-type{
                 margin-bottom: 80px;
+                ${device.tablet`
+                    margin-bottom: 100px;
+                `}
             }
     
             & .card__title {
@@ -112,6 +118,12 @@ const SectionHowWorksStyle = styled.section`
         padding: 80px 24px 0;
         background-color: ${({theme}) => colors.blue90};
         border-radius: 10px;
+
+        ${device.tablet`
+            margin-left: -40px;
+            margin-right: -40px;
+            padding: 180px 40px 0;
+        `}
         
         & .card__info {
             & .card__title, & .paragraph {

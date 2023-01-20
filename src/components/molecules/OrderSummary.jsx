@@ -1,16 +1,21 @@
 // Components
 import React from "react";
 import { H4 } from "../atoms/Heading";
+import Quote from "../atoms/Quote";
 
 // Styles
 import styled from "styled-components";
 import colors from "../../styles/theming/colors";
-import Quote from "../atoms/Quote";
+import device from "../../styles/responsive/breakpoints";
 
 const OrderSummaryStyle = styled.div`
     padding: 32px 24px;
     background-color: ${({theme}) => colors.blue90};
     border-radius: 10px;
+
+    ${device.tablet`
+        padding: 26px 44px;
+    `}
 
     & .subtitle {
         margin-bottom: 8px;
@@ -19,7 +24,8 @@ const OrderSummaryStyle = styled.div`
 `
 
 
-const OrderSummary = ({title, text}) => {
+const OrderSummary = ({title, text }) => {
+   
     return(
         <>
             {
@@ -29,15 +35,13 @@ const OrderSummary = ({title, text}) => {
                     
                     <H4
                         className="subtitle"
-                        opacity 
+                        opacity="true" 
                         uppercase>
                         {title}
                     </H4>
 
-                    <Quote
-                        className="quote"
-                        text={text}/>
-                        
+                    <Quote text={text}/>
+                                                
                 </OrderSummaryStyle>
                 
             }

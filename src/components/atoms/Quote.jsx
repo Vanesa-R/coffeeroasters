@@ -9,13 +9,18 @@ const BlockquoteStyle = styled.blockquote`
     font-family: ${({theme}) => fonts.title};
     font-weight: 900;
     font-size: ${({theme}) => fonts.size3};
-    color: ${({ selected }) => selected ? ({theme}) => colors.cyan : ({theme}) => colors.white10};
+    color: ${({ theme }) => colors.white10};
+
+    & .order__value {
+        color: ${({ theme }) => colors.cyan};
+    }
 `
 
 const Quote = ({text}) =>(
+    
     <>
         <BlockquoteStyle className="blockquote">
-            <p>{text}</p>
+            {text}
         </BlockquoteStyle>
     </>
 )

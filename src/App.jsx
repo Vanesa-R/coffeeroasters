@@ -46,6 +46,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: 15px;
     background-color: ${({ theme }) => colors.white20};
 
+    ${device.tablet`
+      margin-left: 40px;
+      margin-right: 40px;
+    `}
+
     ${device.desktop`
       margin-left: 0;
       margin-right: 0;

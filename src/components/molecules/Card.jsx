@@ -44,8 +44,8 @@ const Card = ({section, src, title, subtitle, text }) => {
                         )
                         : (
                             <>
-                            <H3 className="card__title">{subtitle}</H3>
-                            <Text className="paragraph">{text}</Text>
+                                <H3 className="card__title">{subtitle}</H3>
+                                <Text className="paragraph">{text}</Text>
                             </>
                         )
                     }
