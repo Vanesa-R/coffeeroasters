@@ -99,11 +99,6 @@ const SectionOrder = ({ content }) => {
         deliveries: "",
     });
 
-
-    const [totalPrice, setTotalPrice] = useState(0);
-
-    
-
     
     return(
         <>
@@ -172,7 +167,7 @@ const SectionOrder = ({ content }) => {
                             
                     </OrderSummary>
 
-                    <Button cta="Create my plan!"></Button>
+                    <Button cta="Crate my plan!" disabled></Button>
 
                 </SectionOrderStyle>
             ))}

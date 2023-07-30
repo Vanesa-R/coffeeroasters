@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fontsource/alegreya-sans": "^4.5.11",
     "@fontsource/barlow": "^4.5.9",
     "@fontsource/fraunces": "^4.5.9",
     "@testing-library/jest-dom": "^5.16.5",
